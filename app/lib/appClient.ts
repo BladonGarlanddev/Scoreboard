@@ -1,9 +1,10 @@
 // src/lib/appwriteClient.ts
 import { Client, Account, Databases } from "react-native-appwrite";
+import { PROJECT_ID } from "@/config/appConfig";
 
 export const client = new Client()
-  .setEndpoint("35.146.31.136") // Replace with local network IP if on a physical device
-  .setProject("67ae36860029c180ae52");
+  .setEndpoint("http://10.0.2.2/v1") // Replace with local network IP if on a physical device
+  .setProject(PROJECT_ID);
 
 export const account = new Account(client);
 

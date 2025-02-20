@@ -10,9 +10,19 @@ export default function AppNavigator() {
     (state: RootState) => state.auth.isAuthenticated
   );
 
+  const isVerified = useSelector(
+    (state: RootState) => state.auth.isVerified
+  );
+
   return (
     <NavigationContainer>
-      {isAuthenticated ? <MainNavigator /> : <AuthNavigator />}
+      {isAuthenticated ? (
+        <MainNavigator />
+      ) : isVerified ? (
+        <AuthNavigator />
+      ) : (
+        <AuthNavigator />
+      )}
     </NavigationContainer>
   );
 }

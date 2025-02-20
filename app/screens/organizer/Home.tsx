@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import ThemedContainer from "@/app/components/ThemedContainer";
-import ThemedText from "@/app/components/ThemedText";
+import { ThemedContainer, ThemedText } from "@/components/index";
 
 
 const Home = () => {

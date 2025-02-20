@@ -4,12 +4,6 @@ import { TextStyle, StyleProp } from "react-native";
 
 // Define allowed variant strings.
 type AllowedVariant =
-  | "displayLarge"
-  | "displayMedium"
-  | "displaySmall"
-  | "headlineLarge"
-  | "headlineMedium"
-  | "headlineSmall"
   | "titleLarge"
   | "titleMedium"
   | "titleSmall"
@@ -40,7 +34,7 @@ const ThemedText: React.FC<ThemedTextProps> = ({
   const theme = useTheme<typeof DefaultTheme>();
 
   return (
-    <Text variant={variant as any} style={style} {...props}>
+    <Text variant={variant as any} style={[style, theme.fonts[variant]]} {...props}>
       {children}
     </Text>
   );

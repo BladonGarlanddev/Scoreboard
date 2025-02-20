@@ -12,27 +12,43 @@ export const theme = {
     text: "#21201C",
     disabled: "#cfcfcf",
     placeholder: "#757575",
+    black: "#21201C",
   },
   roundness: 15, // Global border radius for components
   spacing: (multiplier: number) => BASE_SPACING_UNIT * multiplier,
-  title: {
-    fontSize: 36,
-    fontFamily: "BebasNeue-Regular",
-    color: "#21201C",
-  },
-  subtitle: {
-    fontSize: 32,
-    fontFamily: "BebasNeue-Regular",
-    color: "#21201C",
-  },
-  paragraph: {
-    fontSize: 14,
-    fontFamily: "Roboto-Regular",
-    color: "#21201C",
-  },
-  paragraphMedium: {
-    fontSize: 14,
-    fontFamily: "Roboto-Medium",
-    color: "#21201C",
+  fonts: {
+    titleLarge: {
+      fontSize: BASE_SPACING_UNIT * 6,
+      fontFamily: "BebasNeue-Regular",
+      color: "#21201C",
+    },
+    titleMedium: {
+      fontSize: BASE_SPACING_UNIT * 5,
+      fontFamily: "BebasNeue-Regular",
+      color: "#21201C",
+    },
+    titleSmall: {
+      fontSize: BASE_SPACING_UNIT * 4,
+      fontFamily: "BebasNeue-Regular",
+      color: "#21201C",
+    },
+    bodyLarge: {
+      fontSize: BASE_SPACING_UNIT * 3,
+      fontFamily: "Roboto-Regular",
+      color: "#21201C",
+    },
+    bodyMedium: {
+      fontSize: BASE_SPACING_UNIT * 2,
+      fontFamily: "Roboto-Regular",
+      color: "#21201C",
+    },
+    bodySmall: {
+      fontSize: BASE_SPACING_UNIT * 1.5,
+      fontFamily: "Roboto-Regular",
+      color: "#21201C",
+    },
+    labelLarge: { fontSize: BASE_SPACING_UNIT * 3 },
+    labelMedium: { fontSize: BASE_SPACING_UNIT * 2.5 },
+    labelSmall: { fontSize: BASE_SPACING_UNIT * 2 },
   },
 };

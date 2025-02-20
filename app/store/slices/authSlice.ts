@@ -1,14 +1,17 @@
 // src/store/slices/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { UserData, UserMetadata } from "@/types/types"
 
 type AuthState = {
   isAuthenticated: boolean;
-  accountType: "athelete" | "organizer" | "judge" | "filmer" | "labeller" | undefined;
+  isVerified: boolean;
+  userMetadata: UserMetadata | null;
 };
 
 const initialState: AuthState = {
-  isAuthenticated: false, // Default state (logged out)
-  accountType: undefined, // Default state (no account type)
+  isAuthenticated: false,
+  isVerified: false,
+  userMetadata: null,
 };
 
 const authSlice = createSlice({
@@ -17,19 +20,23 @@ const authSlice = createSlice({
   reducers: {
     login: (
       state,
-      action: PayloadAction<
-        "athelete" | "organizer" | "judge" | "filmer" | "labeller"
-      >
+      action: PayloadAction<{
+        isVerified: boolean;
+        userMetadata: UserMetadata;
+        isAuthenticated: boolean;
+      }>
     ) => {
       state.isAuthenticated = true;
-      state.accountType = action.payload;
+      state.isVerified = action.payload.isVerified
+      state.userMetadata = action.payload.userMetadata;
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.accountType = undefined;
+      state.userMetadata = null;
     },
   },
 });
+
 
 // Export actions
 export const { login, logout } = authSlice.actions;
