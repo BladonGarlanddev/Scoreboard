@@ -1,6 +1,6 @@
 import { account, databases } from "../lib/appClient";
 import { ID } from "react-native-appwrite";
-import { DATABASE_ID, USERS_COLLECTION_ID } from "../config/appConfig"; // Centralized config
+import { DATABASE_ID, USERS_COLLECTION_ID, ENDPOINT, VERIFICATION_LINK } from "../config/appConfig"; // Centralized config
 import { useSelector } from "react-redux"; // Import useSelector to access Redux state
 import { RootState } from "@/store/store"; // Adjust path as needed
 import type { Models } from "appwrite";
@@ -27,7 +27,7 @@ export async function registerUser({
     console.log("Session: ", JSON.stringify(session));
 
     // Create a verification email
-    const result = await account.createVerification("http://10.0.2.2/v1");
+    const result = await account.createVerification(VERIFICATION_LINK);
 
     // ✅ Return the user inside an object
     return { user };

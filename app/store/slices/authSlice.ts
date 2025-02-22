@@ -27,17 +27,23 @@ const authSlice = createSlice({
       }>
     ) => {
       state.isAuthenticated = true;
-      state.isVerified = action.payload.isVerified
+      state.isVerified = action.payload.isVerified;
       state.userMetadata = action.payload.userMetadata;
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.userMetadata = null;
     },
+    verifyEmailSuccess: (state) => {
+      state.isVerified = true;
+    },
+    verifyEmailFailure: (state) => {
+      state.isVerified = false;
+    },
   },
 });
 
 
 // Export actions
-export const { login, logout } = authSlice.actions;
+export const { login, logout, verifyEmailFailure, verifyEmailSuccess } = authSlice.actions;
 export default authSlice.reducer;

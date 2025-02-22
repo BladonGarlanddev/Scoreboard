@@ -18,14 +18,11 @@ import { registerUser, loginUser, getUser } from "@/services/authServices"; // A
 import { account } from "@/lib/appClient";
 import type { UserData, UserMetadata } from "@/types/types"
 import LogoContainer from "@/components/LogoContainer";
+import atheleteImage from "@/assets/images/greek-athelete.png";
+import organizerImage from "@/assets/images/greek-organizer.png";
 
-const logo = require("../assets/images/logo.png");
-const atheleteImage = require("../assets/images/greek-athelete.png");
-const organizerImage = require("../assets/images/greek-organizer.png");
 const { width } = Dimensions.get("window");
 
-const { width: intrinsicWidth, height: intrinsicHeight } =
-  Image.resolveAssetSource(logo);
 
 const Login = () => {
   console.log("Login screen should be getting rendered");
@@ -492,44 +489,36 @@ const Login = () => {
         {/* ----------------- Page 4 (ghost of Page 1) ----------------- */}
         <View key='ghostpage' style={styles.page}>
           {/* logo container*/}
-          <View style={styles.logoContainer}>
-            <ThemedImage source={logo} style={styles.logo} type={"image"} />
-
-            {/* logo text container*/}
-            <View
-              style={{
-                flexDirection: "row",
-                alignSelf: "center",
-                alignItems: "center",
-                maxHeight: 60,
-              }}
-            >
-              <View style={styles.line} />
-              <ThemedText style={{ marginHorizontal: theme.spacing(1) }}>
-                Ghost
-              </ThemedText>
-              <View style={styles.line} />
-            </View>
-          </View>
+          <LogoContainer />
 
           <View style={styles.loginContainer}>
             <View style={styles.loginContent}>
               <ThemedInput
                 label='Email'
-                onChangeText={setEmail}
+                onChangeText={() => {}}
+                error={!!loginEmailError}
                 value={email}
                 mode='outlined'
               />
+              {loginEmailError && (
+                <ThemedText style={{ color: "red" }}>
+                  {loginEmailError}
+                </ThemedText>
+              )}
               <ThemedInput
                 label='Password'
-                onChangeText={setPassword}
+                onChangeText={() => {}}
                 value={password}
+                secureTextEntry
+                error={!!loginPasswordError}
               />
+              {loginPasswordError && (
+                <ThemedText style={{ color: "red" }}>
+                  {loginPasswordError}
+                </ThemedText>
+              )}
               {/* Go to page 2 on button press */}
-              <Button
-                mode='contained'
-                onPress={() => pagerRef.current?.setPage(1)}
-              >
+              <Button mode='contained' onPress={() => {}}>
                 Login
               </Button>
             </View>
@@ -563,9 +552,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     paddingHorizontal: theme.spacing(2),
     paddingVertical: theme.spacing(10),
-  },
-  logo: {
-    height: intrinsicHeight,
   },
   line: {
     height: 1, // Line thickness

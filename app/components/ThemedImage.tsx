@@ -1,4 +1,5 @@
 import { Image, StyleSheet } from "react-native";
+import React from "react";
 
 type ThemedImageProps = {
   source: any; // Adjust type as needed

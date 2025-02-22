@@ -1,8 +1,8 @@
 import { ThemedImage, ThemedText } from "@/components/index";
 import { View, Image, StyleSheet } from "react-native";
 import { theme } from "@/themes/theme"
+import logo from "@/assets/images/logo.png";
 
-const logo = require("@/assets/images/logo.png");
 const { width: intrinsicWidth, height: intrinsicHeight } =
   Image.resolveAssetSource(logo);
 
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     height: "40%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: theme.colors.primary,
   },
   logo: {
     height: intrinsicHeight,

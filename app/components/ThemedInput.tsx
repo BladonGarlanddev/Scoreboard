@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { TextInput } from "react-native-paper";
 import { theme } from "../themes/theme";
 import { useMemo } from "react";
+import React from "react";
 
 type ThemedInputProps = {
   label: string;

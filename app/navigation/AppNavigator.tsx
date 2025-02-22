@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import AuthNavigator from "./AuthStack";
 import MainNavigator from "./MainStack";
+import VerificationPage from "@/screens/Verification";
 
 export default function AppNavigator() {
   const isAuthenticated = useSelector(
@@ -21,7 +22,7 @@ export default function AppNavigator() {
       ) : isVerified ? (
         <AuthNavigator />
       ) : (
-        <AuthNavigator />
+        <VerificationPage />
       )}
     </NavigationContainer>
   );

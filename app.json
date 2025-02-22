@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Scoreboard",
-    "slug": "Scoreboard",
+    "slug": "scoreboard",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/images/logo.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "05a53b24-3983-4c6b-874f-e0592429876c"
+      }
+    },
+    "owner": "bladon"
   }
 }

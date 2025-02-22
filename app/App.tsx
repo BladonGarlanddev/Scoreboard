@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { useFonts } from "expo-font";
+import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,24 +10,24 @@ import AppNavigator from '@/navigation/AppNavigator';
 import { theme } from '@/themes/theme';
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
+import BebasNeueRegular from "@/assets/fonts/BebasNeue-Regular.ttf";
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    "BebasNeue-Regular": require("./assets/fonts/BebasNeue-Regular.ttf"),
-  });
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync(); // ⏳ Keep splash screen visible
-      if (fontsLoaded) {
-        await SplashScreen.hideAsync(); // ✅ Hide splash screen when fonts are ready
-      }
-    }
-    prepare();
-  }, [fontsLoaded]);
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        "BebasNeue-Regular": BebasNeueRegular,
+      });
+      setFontsLoaded(true);
+    };
+
+    loadFonts();
+  }, []);
 
   if (!fontsLoaded) {
-    return null; // Prevent rendering until fonts are loaded
+    return null; // or a loading indicator
   }
 
   return (

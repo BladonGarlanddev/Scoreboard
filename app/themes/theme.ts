@@ -45,7 +45,7 @@ export const theme = {
     bodySmall: {
       fontSize: BASE_SPACING_UNIT * 1.5,
       fontFamily: "Roboto-Regular",
-      color: "#21201C",
+      color: "#49473e",
     },
     labelLarge: { fontSize: BASE_SPACING_UNIT * 3 },
     labelMedium: { fontSize: BASE_SPACING_UNIT * 2.5 },
