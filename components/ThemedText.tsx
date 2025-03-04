@@ -1,60 +1,40 @@
-import { Text, type TextProps, StyleSheet } from 'react-native';
+import React from "react";
+import { Text, TextProps, useTheme, DefaultTheme } from "react-native-paper";
+import { TextStyle, StyleProp } from "react-native";
 
-import { useThemeColor } from '@/hooks/useThemeColor';
+// Define allowed variant strings.
+type AllowedVariant =
+  | "titleLarge"
+  | "titleMedium"
+  | "titleSmall"
+  | "bodyLarge"
+  | "bodyMedium"
+  | "bodySmall"
+  | "labelLarge"
+  | "labelMedium"
+  | "labelSmall";
 
-export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+// Omit 'variant' and 'children' from TextProps so we can re-declare them.
+type ThemedTextProps = {
+  variant?: AllowedVariant;
+  children?: React.ReactNode;
+  style?: StyleProp<TextStyle>;
 };
 
-export function ThemedText({
+const ThemedText: React.FC<ThemedTextProps> = ({
+  variant = "bodyMedium", // Ensure this key exists in your theme's fonts.
+  children,
   style,
-  lightColor,
-  darkColor,
-  type = 'default',
-  ...rest
-}: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  ...props
+}) => {
+  // Use 'typeof DefaultTheme' to correctly type the theme.
+  const theme = useTheme();
 
   return (
-    <Text
-      style={[
-        { color },
-        type === 'default' ? styles.default : undefined,
-        type === 'title' ? styles.title : undefined,
-        type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
-        type === 'link' ? styles.link : undefined,
-        style,
-      ]}
-      {...rest}
-    />
+    <Text style={[style, theme.fonts[variant]]} {...props}>
+      {children}
+    </Text>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: '600',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: '#0a7ea4',
-  },
-});
+export default ThemedText;

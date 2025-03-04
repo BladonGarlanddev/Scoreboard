@@ -1,45 +1,23 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Stack } from "expo-router";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store/store";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+export default function MainLayout() {
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const userData = useSelector((state: RootState) => state.auth.userMetadata)
+  const userType = userData?.accountType
+
+  console.log("tabs was rendered");
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <Stack>
+      {userType === "organizer" ? (
+        <Stack.Screen name='(organizer)' options={{ headerShown: false }} />
+      ) : userType === "athlete" ? (
+        <Stack.Screen name='(athlete)' options={{ headerShown: false }} />
+      ) : (
+        <Stack.Screen name='(staff)' options={{ headerShown: false }} />
+      )}
+    </Stack>
   );
 }
